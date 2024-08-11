@@ -21,8 +21,8 @@ string Autorizaciones::getAllInfo() const {
     "Persona que autorizó: " + UsuarioAutoriza->Nombre + "\n" +
     "Persona que solicitó: " + UsuarioSolicita->Nombre + "\n" +
     "Monto autorizado: " + (ostringstream() << fixed << setprecision(4) << MontoAutorizado).str() + "\n"; // Convertir un double a string
-
-return result;
+    
+    return result;
 }
 
 void Autorizaciones::crearRegistroAutorizacion(
@@ -48,5 +48,11 @@ void Autorizaciones::crearRegistroAutorizacion(
 }
 
 void Autorizaciones::setFechaAutorizacion(int year, int month, int day) {
-    FechaAutorizacion = format("{:04}-{:02}-{:02}", year, month, day);
+    ostringstream oss; // Objeto de la clase ostringstream para poder concatenar strings
+
+    // Utilizar setfill y setw para mantener el formato YYYY-MM-DD
+    oss << setw(4) << setfill('0') << year << "-"
+        << setw(2) << setfill('0') << month << "-"
+        << setw(2) << setfill('0') << day;
+    FechaAutorizacion = oss.str();
 }
