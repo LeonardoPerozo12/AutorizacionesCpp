@@ -1,20 +1,52 @@
-// Autorizaciones.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*
 
-#include <iostream>
+Este es el archivo de implementación de la clase Autorizaciones.
+En este archivo se implementan los métodos de la clase Autorizaciones.
 
-int main()
-{
-    std::cout << "Hello World!\n";
+*/
+
+#include "Autorizaciones.h"
+#include <iostream> // Esta librería se utiliza para imprimir mensajes en la consola
+#include <sstream> // Esta librería se utilizará para convertir un double a string
+#include <iomanip> // Esta librería se utiliza para dar formato a los números
+#include "Persona.h" // Inclusión de la clase Persona
+
+using namespace std;
+
+string Autorizaciones::getAllInfo() const {
+    string result = 
+    "Fecha de autorización: " + FechaAutorizacion + "\n" +
+    "Tipo de autorización: " + TipoAutorizacion + "\n" +
+    "Motivo de rechazo: " + MotivoRechazo + "\n" +
+    "Persona que autorizó: " + UsuarioAutoriza->Nombre + "\n" +
+    "Persona que solicitó: " + UsuarioSolicita->Nombre + "\n" +
+    "Monto autorizado: " + (ostringstream() << fixed << setprecision(4) << MontoAutorizado).str() + "\n"; // Convertir un double a string
+
+return result;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+void Autorizaciones::crearRegistroAutorizacion(
+    // Parámetros necesarios para crear un registro de autorización
+    string anoAutorizacion,
+    string mesAutorizacion,
+    string diaAutorizacion,
+    Persona* usuarioAutoriza, // Referencia a un objeto de la clase Persona
+    Persona* usuarioSolicita, // Referencia a un objeto de la clase Persona
+    string tipoAutorizacion,
+    double montoAutorizado
+)
+{
+    // Asignar los valores a los atributos de la clase Autorizaciones
+    UsuarioAutoriza = usuarioAutoriza;
+    UsuarioSolicita = usuarioSolicita;
+    TipoAutorizacion = tipoAutorizacion;
+    MontoAutorizado = montoAutorizado;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    // Utilizar el método setFechaAutorizacion para asignar la fecha de autorización
+    // El método  stoi convierte un string a un entero
+    setFechaAutorizacion(stoi(anoAutorizacion), stoi(mesAutorizacion), stoi(diaAutorizacion));
+}
+
+void Autorizaciones::setFechaAutorizacion(int year, int month, int day) {
+    FechaAutorizacion = format("{:04}-{:02}-{:02}", year, month, day);
+}
