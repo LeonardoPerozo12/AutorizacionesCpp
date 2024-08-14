@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Downloads\Persona.h" />
     <ClInclude Include="Autorizaciones.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Autorizaciones.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

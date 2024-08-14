@@ -14,17 +14,16 @@ En este archivo se implementan los métodos de la clase Autorizaciones.
 using namespace std;
 
 string Autorizaciones::getAllInfo() const {
-    string result = 
-    "Fecha de autorización: " + FechaAutorizacion + "\n" +
-    "Tipo de autorización: " + TipoAutorizacion + "\n" +
-    "Motivo de rechazo: " + MotivoRechazo + "\n" +
-    "Persona que autorizó: " + UsuarioAutoriza->Nombre + "\n" +
-    "Persona que solicitó: " + UsuarioSolicita->Nombre + "\n" +
-    "Monto autorizado: " + (ostringstream() << fixed << setprecision(4) << MontoAutorizado).str() + "\n"; // Convertir un double a string
-    
+    string result =
+        "Fecha de autorización: " + FechaAutorizacion + "\n" +
+        "Tipo de autorización: " + TipoAutorizacion + "\n" +
+        "Motivo de rechazo: " + MotivoRechazo + "\n" +
+        "Persona que autorizó: " + UsuarioAutoriza->getNombreCompleto() + "\n" +
+        "Persona que solicitó: " + UsuarioSolicita->getNombreCompleto() + "\n" +
+        "Monto autorizado: " + (ostringstream() << fixed << setprecision(4) << MontoAutorizado).str() + "\n"; // Convertir un double a string
+
     return result;
 }
-
 void Autorizaciones::crearRegistroAutorizacion(
     // Parámetros necesarios para crear un registro de autorización
     string anoAutorizacion,
